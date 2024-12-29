@@ -12,6 +12,7 @@ const usersSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    //saving jobs
     saved_jobs:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Job'

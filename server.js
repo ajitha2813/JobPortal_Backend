@@ -1,8 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./Routes/User.routes');
+const cors = require('cors');
 const jobRoutes = require('./Routes/jobRoutes');
 const app = express();
+
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json()); 
 
 // MongoDB connection
