@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const verfiyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
     if(req.headers.authorization === undefined) {
         return res.status(401).json({ 
             message: 'Unauthorized request' 
@@ -27,4 +27,4 @@ const verfiyToken = (req, res, next) => {
 }
 
 
-module.exports = { verfiyToken }
+module.exports = { verifyToken }
