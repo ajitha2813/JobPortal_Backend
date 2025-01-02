@@ -12,7 +12,6 @@ This repository contains the backend services for a job portal application, buil
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ---
@@ -50,7 +49,7 @@ Ensure you have the following installed:
 2. **Install Dependencies**:
    ```bash
    # Install core dependencies
-   npm install express mongoose dotenv jsonwebtoken bcrypt body-parser
+   npm install express mongoose dotenv jsonwebtoken bcrypt body-parser cors
 
    # Install development and testing dependencies
    npm install --save-dev nodemon mocha chai supertest sinon
@@ -108,9 +107,7 @@ To ensure the backend works as expected:
    ```bash
    npm test
    ```
-3. View the test report to ensure all functionality works as expected.
 
----
 
 ## Contributing
 We welcome contributions! To contribute:
