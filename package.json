@@ -2,9 +2,10 @@
   "name": "job_portal_backend",
   "version": "1.0.0",
   "main": "index.js",
+
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/**/*.test.js --exit"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,11 @@
     "mongoose": "^8.9.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1",
+    "nodemon": "^3.1.9",
+    "sinon": "^19.0.2",
+    "supertest": "^7.0.0"
   },
   "description": ""
 }

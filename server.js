@@ -7,17 +7,22 @@ const app = express();
 
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json()); 
 
 // MongoDB connection
-const mongoURI = 'mongodb://localhost:27017/job-portal'; // Replace with your MongoDB URI
-mongoose.connect(mongoURI)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+const mongoURI = 'mongodb://127.0.0.1:27017/job-portal'; // IPv4 address
+mongoose.connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,  // Timeout after 5 seconds
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
 
 // Routes
 app.use('/api', userRoutes);
