@@ -7,7 +7,8 @@ const { getAllJobs, createJob, saveJob , getSavedJobs , filterJobs} = require('.
 router.get('/job/getAll', getAllJobs);
 
 // Get Job Based on user id
-router.get('/job/getSavedJobs', getSavedJobs);
+// Backend route (ensure this matches your route)
+router.post('/job/getSavedJobs', getSavedJobs);
 
 // Route to create a new job    
 router.post('/job/create', verifyToken, createJob);

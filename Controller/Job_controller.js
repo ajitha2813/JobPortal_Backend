@@ -73,60 +73,60 @@ exports.createJob = async (req, res) => {
 }
 
 exports.saveJob = async (req, res) => {
-try {
-        console.log(req.body);
-        const { jobId, userId } = req.body;
-        const user = await User.findById(req.body.userId);
-
-        const isJobSaved = user.saved_jobs.some((job)=>{
-            
-            return job._id == jobId.toString()
-        })
-
-        console.log(isJobSaved);
-        if(isJobSaved){
-            await User.findById(req.body.userId).updateOne({ $pull: { saved_jobs: jobId } });
-            
-            res.status(201).json(
-                {
-                    isSuccess: true,
-                    message: 'Job unsaved successfully',
-                    
-                }
-            );
-        }
-        else{
-           
-            await User.findById(req.body.userId).updateOne({ $push: { saved_jobs: jobId } });
-            res.status(201).json(
-                {
-                    isSuccess: true,
-                    message: 'Job saved successfully',
-                 
-                }
-            );
-        }
-      
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({ message: 'Server error' });
-    }
-}
-
-exports.getSavedJobs = async (req, res) => {
     try {
-        console.log(req.body);
-        const UserData = await User.findById(req.body.userId).populate('saved_jobs');
+      console.log(req.body);
+      const { jobId, userId } = req.body;
+  
+      const user = await User.findById(userId);
+  
+      // Check if user exists
+      if (!user) {
+        return res.status(404).json({
+          isSuccess: false,
+          message: 'User not found'
+        });
+      }
+  
+      const isJobSaved = user.saved_jobs.some((job) => job._id == jobId.toString());
+      console.log(isJobSaved);
+  
+      if (isJobSaved) {
+        await User.findById(userId).updateOne({ $pull: { saved_jobs: jobId } });
+        res.status(200).json({
+          isSuccess: true,
+          message: 'Job unsaved successfully',
+        });
+      } else {
+        await User.findById(userId).updateOne({ $push: { saved_jobs: jobId } });
+        res.status(200).json({
+          isSuccess: true,
+          message: 'Job saved successfully',
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+  exports.getSavedJobs = async (req, res) => {
+    try {
+        const userId = req.body.userId; // Get userId from the request body
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
+
+        const UserData = await User.findById(userId).populate('saved_jobs');
         const jobs = UserData.saved_jobs;
-        res.status(201).json(
-            {
-                isSuccess: true,
-                message: 'SavedJob fetched successfully',
-                data: jobs
-            }
-        );
+
+        res.status(200).json({
+            isSuccess: true,
+            message: 'Saved jobs fetched successfully',
+            data: jobs,
+        });
     } catch (error) {
         console.error(error);
         res.status(400).json({ message: 'Server error' });
     }
+
 }
