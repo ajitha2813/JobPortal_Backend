@@ -12,6 +12,7 @@ This repository contains the backend services for a job portal application, buil
 - [Technologies Used](#technologies-used)
 - [Testing](#testing)
 - [Contributing](#contributing)
+- [License](#license)
 - [Contact](#contact)
 
 ---
@@ -46,19 +47,21 @@ Ensure you have the following installed:
    cd jobportal-backend
    ```
 
-2. # Install core dependencies
-npm install express mongoose dotenv jsonwebtoken bcrypt body-parser
+2. **Install Dependencies**:
+   ```bash
+   # Install core dependencies
+   npm install express mongoose dotenv jsonwebtoken bcrypt body-parser
 
-# Install development and testing dependencies
-npm install --save-dev nodemon mocha chai supertest sinon
-
+   # Install development and testing dependencies
+   npm install --save-dev nodemon mocha chai supertest sinon
+   ```
 
 3. **Set Up Environment Variables**:
    Create a `.env` file in the root directory with the following variables:
    ```env
    PORT=5000
-   MONGO_URI='mongodb://localhost:27017/job-portal'
-   
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
    ```
 
 4. **Run the Server**:
@@ -76,15 +79,18 @@ npm install --save-dev nodemon mocha chai supertest sinon
 
 ## API Endpoints
 
+## API Endpoints
+
 ### User Routes
-- **GET** `/api/user/getAll`: get All user.
-- **GET** `/api/user/login`: Login for existing users.
--  **GET** `/api/user/register`: REgister new users.
+- **GET** /api/user/getAll: get All user.
+- **GET** /api/user/login: Login for existing users.
+-  **GET** /api/user/register: REgister new users.
 
 ### Job Routes
-- **GET** `/api/job/save`: save job listings.
-- **GET** `/api/job/create`: Create a new job listing.
+- **GET** /api/job/save: save job listings.
+- **GET** /api/job/create: Create a new job listing.
 - 
+
 ---
 
 ## Technologies Used
@@ -124,7 +130,12 @@ We welcome contributions! To contribute:
    ```
 5. Create a pull request.
 
+---
 
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
 
 ## Contact
 - **Name**: K.Ajitha
@@ -132,3 +143,4 @@ We welcome contributions! To contribute:
 - **GitHub**: [ajitha2813](https://github.com/ajitha2813)
 
 ---
+
